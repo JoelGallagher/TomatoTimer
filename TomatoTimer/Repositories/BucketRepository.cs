@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using TomatoTimer.Entities;
+using TomatoTimer.Interfaces;
 
 namespace TomatoTimer.Repositories
 {

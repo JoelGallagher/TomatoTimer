@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
 using System.Windows.Forms;
 using TomatoTimer.Entities;
+using TomatoTimer.Forms;
 using TomatoTimer.Repositories;
 
 namespace TomatoTimer
@@ -14,9 +14,13 @@ namespace TomatoTimer
         private DateTime countdownFinished;
         private TomatoState currentState;
         private Bucket currentBucket;
+
         public List<Tomato> Tomatoes { get; set; }
+
         public List<Bucket> Buckets { get; set; }
+
         public BucketRepository BucketRepository { get; set; }
+
         public TomatoRepository TomatoRepository { get; set; }
 
         public Form1()
@@ -64,14 +68,14 @@ namespace TomatoTimer
             currentState = TomatoState.Started;
             countdownFinished = DateTime.Now.AddMinutes(countdownMinutes);
             currentBucket = new Bucket();
-             
+
             timerUI.Start();
         }
 
         private void timerUI_Tick(object sender, EventArgs e)
         {
             var timeRemaining = getTimeRemaining();
-            lblTimer.Text = string.Format("{0} : {1}", timeRemaining.ToString("mm"),  timeRemaining.ToString("ss") );
+            lblTimer.Text = string.Format("{0} : {1}", timeRemaining.ToString("mm"), timeRemaining.ToString("ss"));
 
             if (timeRemaining.TotalSeconds < 1)
             {
@@ -80,15 +84,18 @@ namespace TomatoTimer
                 MessageBox.Show("Done!");
                 RefreshUI();
             }
-           
         }
 
         private TimeSpan getTimeRemaining()
         {
-            return countdownFinished.Subtract(DateTime.Now) ;
+            return countdownFinished.Subtract(DateTime.Now);
         }
 
-        
+        private void cmdManageBuckets_Click(object sender, EventArgs e)
+        {
+            var form = new ManageBuckets();
+            form.Show();
+        }
     }
 
     public enum TomatoState

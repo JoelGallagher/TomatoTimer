@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using TomatoTimer.Entities;
 
-namespace TomatoTimer.Repositories
+namespace TomatoTimer.Interfaces
 {
     public interface IBucketRepository
     {
