@@ -3,7 +3,7 @@ using TomatoTimer.Entities;
 
 namespace TomatoTimer.Repositories
 {
-    public class TomatoRepository
+    public class TomatoRepository : ITomatoRepository
     {
         private List<Tomato> _tomatoes;
 

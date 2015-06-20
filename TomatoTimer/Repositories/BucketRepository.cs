@@ -1,16 +1,15 @@
-﻿ 
-using System.Collections.Generic; 
+﻿using System.Collections.Generic;
 using TomatoTimer.Entities;
 
 namespace TomatoTimer.Repositories
 {
-    public class BucketRepository
+    public class BucketRepository : IBucketRepository
     {
         private List<Bucket> _buckets;
 
         public BucketRepository()
         {
-            _buckets=new List<Bucket> { new Bucket { Name = "Default" } };
+            _buckets = new List<Bucket> { new Bucket { Name = "Default" } };
         }
 
         public List<Bucket> GetAll()
