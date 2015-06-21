@@ -11,5 +11,7 @@ namespace TomatoTimer.Interfaces
         List<Tomato> GetAll();
 
         void Add(Tomato tomato);
+
+        void Delete(Guid id);
     }
 }

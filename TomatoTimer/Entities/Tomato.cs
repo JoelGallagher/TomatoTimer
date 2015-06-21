@@ -4,6 +4,11 @@ namespace TomatoTimer.Entities
 {
     public class Tomato
     {
+        public Tomato()
+        {
+            Id = Guid.NewGuid();
+        }
+
         public Guid Id { get; set; }
 
         public string Bucket { get; set; }
