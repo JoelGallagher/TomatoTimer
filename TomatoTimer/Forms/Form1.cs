@@ -4,7 +4,6 @@ using System.Configuration;
 using System.Windows.Forms;
 using TomatoTimer.Entities;
 using TomatoTimer.Forms;
-using TomatoTimer.Repositories;
 
 namespace TomatoTimer
 {
@@ -19,19 +18,9 @@ namespace TomatoTimer
 
         public List<Bucket> Buckets { get; set; }
 
-        public BucketRepository BucketRepository { get; set; }
-
-        public TomatoRepository TomatoRepository { get; set; }
-
         public Form1()
         {
             InitializeComponent();
-
-            TomatoRepository = new TomatoRepository();
-            BucketRepository = new BucketRepository();
-
-            Tomatoes = TomatoRepository.GetAll();
-            Buckets = BucketRepository.GetAll();
 
             countdownMinutes = Convert.ToDouble(ConfigurationManager.AppSettings["CountdownMinutes"]);
             currentState = TomatoState.Stopped;
@@ -42,10 +31,10 @@ namespace TomatoTimer
         private void RefreshUI()
         {
             cboBuckets.Items.Clear();
-            foreach (var bucket in Buckets)
-            {
-                cboBuckets.Items.Add(bucket.Name);
-            }
+            //foreach (var bucket in Buckets)
+            //{
+            //    cboBuckets.Items.Add(bucket.Name);
+            //}
 
             cmdStart.Enabled = currentState == TomatoState.Stopped;
             cmdStop.Enabled = currentState == TomatoState.Started;

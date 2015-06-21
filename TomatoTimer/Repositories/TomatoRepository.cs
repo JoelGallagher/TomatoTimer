@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TomatoTimer.Entities;
 using TomatoTimer.Interfaces;
 
@@ -11,6 +12,11 @@ namespace TomatoTimer.Repositories
         public TomatoRepository()
         {
             _tomatoes = new List<Tomato>();
+        }
+
+        public Tomato Get(Guid id)
+        {
+            return new Tomato() { Bucket = "di repo bucket!" };
         }
 
         public List<Tomato> GetAll()

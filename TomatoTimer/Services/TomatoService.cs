@@ -6,9 +6,22 @@ namespace TomatoTimer.Services
 {
     internal class TomatoService : ITomatoService
     {
-        public Tomato Get()
+        private ITomatoRepository _tomatoRepository { get; set; }
+
+        public TomatoService()
         {
-            throw new NotImplementedException();
+        }
+
+        public TomatoService(ITomatoRepository tomatoRepository)
+        {
+            _tomatoRepository = tomatoRepository;
+        }
+
+        public Tomato Get(Guid id)
+        {
+            var tomato = _tomatoRepository.Get(id);
+
+            return tomato;
         }
     }
 }
