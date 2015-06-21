@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Windows.Forms;
 using TomatoTimer.Entities;
 using TomatoTimer.Forms;
+using TomatoTimer.Interfaces;
 
 namespace TomatoTimer
 {
@@ -12,6 +13,7 @@ namespace TomatoTimer
         private double countdownMinutes;
         private DateTime countdownFinished;
         private TomatoState currentState;
+        private ITomatoService _tomatoService;
         private Bucket currentBucket;
 
         public List<Tomato> Tomatoes { get; set; }
@@ -19,6 +21,17 @@ namespace TomatoTimer
         public List<Bucket> Buckets { get; set; }
 
         public Form1()
+        {
+            Setup();
+        }
+
+        public Form1(ITomatoService tomatoService)
+        {
+            _tomatoService = tomatoService;
+            Setup();
+        }
+
+        private void Setup()
         {
             InitializeComponent();
 
@@ -82,7 +95,7 @@ namespace TomatoTimer
 
         private void cmdManageBuckets_Click(object sender, EventArgs e)
         {
-            var form = new ManageBuckets();
+            var form = new ManageBuckets(_tomatoService);
             form.Show();
         }
     }

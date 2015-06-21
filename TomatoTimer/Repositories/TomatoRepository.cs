@@ -14,6 +14,11 @@ namespace TomatoTimer.Repositories
             _tomatoes = new List<Tomato>();
         }
 
+        public override string ToString()
+        {
+            return "Tomato Repo CONRETE";
+        }
+
         public Tomato Get(Guid id)
         {
             return new Tomato() { Bucket = "di repo bucket!" };

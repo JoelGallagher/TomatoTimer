@@ -65,6 +65,7 @@
     <Compile Include="Forms\ManageBuckets.Designer.cs">
       <DependentUpon>ManageBuckets.cs</DependentUpon>
     </Compile>
+    <Compile Include="Ninject\CompositionRoot.cs" />
     <Compile Include="Ninject\diModule.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

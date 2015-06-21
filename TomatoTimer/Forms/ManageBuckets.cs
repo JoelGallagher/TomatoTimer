@@ -1,8 +1,6 @@
-﻿using Ninject;
-using System;
+﻿using System;
 using System.Windows.Forms;
 using TomatoTimer.Interfaces;
-using TomatoTimer.Ninject;
 
 namespace TomatoTimer.Forms
 {
@@ -10,12 +8,20 @@ namespace TomatoTimer.Forms
     {
         private ITomatoService _tomatoService;
 
+        #region CTOR
+
+        public ManageBuckets(ITomatoService tomatoService)
+        {
+            _tomatoService = tomatoService;
+            InitializeComponent();
+        }
+
         public ManageBuckets()
         {
             InitializeComponent();
-            var kernel = new StandardKernel(new diModule());
-            _tomatoService = kernel.Get<ITomatoService>();
         }
+
+        #endregion CTOR
 
         private void cmdHitRepo_Click(object sender, System.EventArgs e)
         {
