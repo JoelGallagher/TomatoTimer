@@ -10,6 +10,7 @@ namespace TomatoTimer.Ninject
         public override void Load()
         {
             Bind<IBucketRepository>().To<BucketRepository>();
+            Bind<IBucketService>().To<BucketService>();
             Bind<ITomatoRepository>().To<TomatoRepository>();
             Bind<ITomatoService>().To<TomatoService>();
         }

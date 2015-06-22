@@ -10,7 +10,12 @@ namespace TomatoTimer.Repositories
 
         public BucketRepository()
         {
-            _buckets = new List<Bucket> { new Bucket { Name = "Default" } };
+            _buckets = new List<Bucket>
+            {
+                new Bucket { Name = "Default" },
+                new Bucket { Name = "Work" },
+                new Bucket { Name = "Study" }
+            };
         }
 
         public List<Bucket> GetAll()

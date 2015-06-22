@@ -7,25 +7,36 @@ namespace TomatoTimer.Forms
     public partial class ManageBuckets : Form
     {
         private ITomatoService _tomatoService;
+        private IBucketService _bucketService;
 
         #region CTOR
 
-        public ManageBuckets(ITomatoService tomatoService)
+        public ManageBuckets(ITomatoService tomatoService, IBucketService bucketService)
         {
             _tomatoService = tomatoService;
+            _bucketService = bucketService;
             InitializeComponent();
+            LoadBuckets();
         }
 
         public ManageBuckets()
         {
             InitializeComponent();
+            LoadBuckets();
         }
 
         #endregion CTOR
 
-        private void cmdHitRepo_Click(object sender, System.EventArgs e)
+        private void LoadBuckets()
         {
-            var x = _tomatoService.Get(Guid.NewGuid());
+            var buckets = _bucketService.GetAll();
+
+            gridBuckets.DataSource = buckets;
+        }
+
+        private void cmdClose_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

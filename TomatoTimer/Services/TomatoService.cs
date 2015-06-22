@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using TomatoTimer.Entities;
 using TomatoTimer.Interfaces;
 
@@ -22,6 +23,13 @@ namespace TomatoTimer.Services
             var tomato = _tomatoRepository.Get(id);
 
             return tomato;
+        }
+
+        public IEnumerable<Tomato> GetAll()
+        {
+            var tomatoes = _tomatoRepository.GetAll();
+
+            return tomatoes;
         }
     }
 }

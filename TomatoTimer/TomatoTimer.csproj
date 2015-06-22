@@ -74,6 +74,8 @@
     <Compile Include="Interfaces\ITomatoRepository.cs" />
     <Compile Include="Repositories\TomatoRepository.cs" />
     <Compile Include="Interfaces\ITomatoService.cs" />
+    <Compile Include="Services\BucketService.cs" />
+    <Compile Include="Interfaces\IBucketService.cs" />
     <Compile Include="Services\TomatoService.cs" />
     <EmbeddedResource Include="Forms\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -91,6 +93,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\TomatoTimer.Entities.Bucket.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

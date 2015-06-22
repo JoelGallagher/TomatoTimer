@@ -14,6 +14,7 @@ namespace TomatoTimer
         private DateTime countdownFinished;
         private TomatoState currentState;
         private ITomatoService _tomatoService;
+        private IBucketService _bucketService;
         private Bucket currentBucket;
 
         public List<Tomato> Tomatoes { get; set; }
@@ -25,9 +26,10 @@ namespace TomatoTimer
             Setup();
         }
 
-        public Form1(ITomatoService tomatoService)
+        public Form1(ITomatoService tomatoService, IBucketService bucketService)
         {
             _tomatoService = tomatoService;
+            _bucketService = bucketService;
             Setup();
         }
 
@@ -44,6 +46,7 @@ namespace TomatoTimer
         private void RefreshUI()
         {
             cboBuckets.Items.Clear();
+
             //foreach (var bucket in Buckets)
             //{
             //    cboBuckets.Items.Add(bucket.Name);
@@ -95,7 +98,7 @@ namespace TomatoTimer
 
         private void cmdManageBuckets_Click(object sender, EventArgs e)
         {
-            var form = new ManageBuckets(_tomatoService);
+            var form = new ManageBuckets(_tomatoService, _bucketService);
             form.Show();
         }
     }

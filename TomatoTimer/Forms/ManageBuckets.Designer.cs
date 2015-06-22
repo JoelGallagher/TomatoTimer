@@ -28,34 +28,59 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.cmdHitRepo = new System.Windows.Forms.Button();
+            this.components = new System.ComponentModel.Container();
+            this.cmdClose = new System.Windows.Forms.Button();
+            this.gridBuckets = new System.Windows.Forms.DataGridView();
+            this.bucketBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.gridBuckets)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bucketBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // cmdHitRepo
+            // cmdClose
             // 
-            this.cmdHitRepo.Location = new System.Drawing.Point(193, 149);
-            this.cmdHitRepo.Name = "cmdHitRepo";
-            this.cmdHitRepo.Size = new System.Drawing.Size(192, 155);
-            this.cmdHitRepo.TabIndex = 0;
-            this.cmdHitRepo.Text = "cmdHitRepo";
-            this.cmdHitRepo.UseVisualStyleBackColor = true;
-            this.cmdHitRepo.Click += new System.EventHandler(this.cmdHitRepo_Click);
+            this.cmdClose.Location = new System.Drawing.Point(323, 301);
+            this.cmdClose.Name = "cmdClose";
+            this.cmdClose.Size = new System.Drawing.Size(75, 23);
+            this.cmdClose.TabIndex = 0;
+            this.cmdClose.Text = "Close";
+            this.cmdClose.UseVisualStyleBackColor = true;
+            this.cmdClose.Click += new System.EventHandler(this.cmdClose_Click);
+            // 
+            // gridBuckets
+            // 
+            this.gridBuckets.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridBuckets.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
+            this.gridBuckets.Location = new System.Drawing.Point(12, 25);
+            this.gridBuckets.Name = "gridBuckets";
+            this.gridBuckets.Size = new System.Drawing.Size(240, 150);
+            this.gridBuckets.TabIndex = 1;
+            // 
+            // bucketBindingSource
+            // 
+            this.bucketBindingSource.DataSource = typeof(TomatoTimer.Entities.Bucket);
             // 
             // ManageBuckets
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(546, 413);
-            this.Controls.Add(this.cmdHitRepo);
+            this.ClientSize = new System.Drawing.Size(410, 336);
+            this.Controls.Add(this.gridBuckets);
+            this.Controls.Add(this.cmdClose);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "ManageBuckets";
             this.Text = "ManageBuckets";
+            ((System.ComponentModel.ISupportInitialize)(this.gridBuckets)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bucketBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button cmdHitRepo;
+        private System.Windows.Forms.BindingSource bucketBindingSource;
+        private System.Windows.Forms.Button cmdClose;
+        private System.Windows.Forms.DataGridView gridBuckets;
+
 
     }
 }
