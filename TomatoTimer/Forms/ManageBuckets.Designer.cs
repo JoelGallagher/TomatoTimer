@@ -35,8 +35,8 @@
             this.cmdDelete = new System.Windows.Forms.Button();
             this.cmdSave = new System.Windows.Forms.Button();
             this.pnlBuckets = new System.Windows.Forms.FlowLayoutPanel();
-            this.bucketBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnNewBucket = new System.Windows.Forms.Button();
+            this.bucketBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.bucketBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,7 +59,6 @@
             this.label1.Size = new System.Drawing.Size(63, 17);
             this.label1.TabIndex = 2;
             this.label1.Text = "Bucket : ";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // txtBucketName
             // 
@@ -85,6 +84,7 @@
             this.cmdSave.TabIndex = 6;
             this.cmdSave.Text = "Save";
             this.cmdSave.UseVisualStyleBackColor = true;
+            this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click);
             // 
             // pnlBuckets
             // 
@@ -93,10 +93,6 @@
             this.pnlBuckets.Name = "pnlBuckets";
             this.pnlBuckets.Size = new System.Drawing.Size(317, 167);
             this.pnlBuckets.TabIndex = 7;
-            // 
-            // bucketBindingSource
-            // 
-            this.bucketBindingSource.DataSource = typeof(TomatoTimer.Entities.Bucket);
             // 
             // btnNewBucket
             // 
@@ -107,6 +103,10 @@
             this.btnNewBucket.Text = "New";
             this.btnNewBucket.UseVisualStyleBackColor = true;
             this.btnNewBucket.Click += new System.EventHandler(this.btnNewBucket_Click);
+            // 
+            // bucketBindingSource
+            // 
+            this.bucketBindingSource.DataSource = typeof(TomatoTimer.Entities.Bucket);
             // 
             // ManageBuckets
             // 

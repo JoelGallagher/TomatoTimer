@@ -8,6 +8,7 @@ namespace TomatoTimer.Forms
     {
         private ITomatoService _tomatoService;
         private IBucketService _bucketService;
+        private formState currentFormState;
 
         private enum formState
         {
@@ -23,13 +24,17 @@ namespace TomatoTimer.Forms
             _tomatoService = tomatoService;
             _bucketService = bucketService;
             InitializeComponent();
+            currentFormState = formState.clean;
             LoadBuckets();
+            LoadFormState();
         }
 
         public ManageBuckets()
         {
             InitializeComponent();
+            currentFormState = formState.clean;
             LoadBuckets();
+            LoadFormState();
         }
 
         #endregion CTOR
@@ -49,7 +54,15 @@ namespace TomatoTimer.Forms
 
         private void btnBucketClick(object sender, EventArgs e)
         {
-            var x = sender;
+            var callingbutton = (Button)sender;
+            currentFormState = formState.editingBucket;
+            LoadBucketForEdit(callingbutton.Text);
+        }
+
+        private void LoadBucketForEdit(string bucketname)
+        {
+            var bucket = _bucketService.Get(bucketname);
+            txtBucketName.Text = bucket.Name;
         }
 
         private void cmdClose_Click(object sender, EventArgs e)
@@ -57,11 +70,32 @@ namespace TomatoTimer.Forms
             Close();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void btnNewBucket_Click(object sender, EventArgs e)
         {
+            currentFormState = formState.newBucket;
+            LoadFormState();
         }
 
-        private void btnNewBucket_Click(object sender, EventArgs e)
+        private void LoadFormState()
+        {
+            switch (currentFormState)
+            {
+                case formState.clean:
+                    cmdSave.Enabled = false;
+                    cmdDelete.Enabled = false;
+                    break;
+
+                case formState.editingBucket:
+                    cmdSave.Enabled = true;
+                    cmdDelete.Enabled = true;
+                    break;
+
+                case formState.newBucket:
+                    break;
+            }
+        }
+
+        private void cmdSave_Click(object sender, EventArgs e)
         {
         }
     }
