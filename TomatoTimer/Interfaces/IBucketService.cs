@@ -6,7 +6,7 @@ namespace TomatoTimer.Interfaces
 {
     public interface IBucketService
     {
-        IEnumerable<Bucket> GetAll();
+        List<Bucket> GetAll();
 
         Bucket GetByName(string bucketName);
 

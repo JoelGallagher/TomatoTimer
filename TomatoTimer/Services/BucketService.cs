@@ -23,7 +23,7 @@ namespace TomatoTimer.Services
 
         #endregion CTOR
 
-        public IEnumerable<Bucket> GetAll()
+        public List<Bucket> GetAll()
         {
             var buckets = _bucketRepository.GetAll();
             return buckets;
