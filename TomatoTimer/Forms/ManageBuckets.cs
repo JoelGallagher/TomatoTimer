@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using TomatoTimer.Entities;
 using TomatoTimer.Interfaces;
 
 namespace TomatoTimer.Forms
@@ -9,6 +10,7 @@ namespace TomatoTimer.Forms
         private ITomatoService _tomatoService;
         private IBucketService _bucketService;
         private formState currentFormState;
+        private Guid currentEditedBucketId;
 
         private enum formState
         {
@@ -41,12 +43,20 @@ namespace TomatoTimer.Forms
 
         private void LoadBuckets()
         {
+            pnlBuckets.Controls.Clear();
+
             var buckets = _bucketService.GetAll();
             foreach (var bucket in buckets)
             {
-                var button = new Button();
-                button.Text = bucket.Name;
-                button.Name = "btn" + bucket.Name;
+                var button = new Button
+                {
+                    Tag = bucket,
+                    Text = bucket.Name,
+                    Name = "btnBucket" + bucket.Id,
+                    AutoSizeMode = AutoSizeMode.GrowAndShrink,
+                    AutoSize = true
+                };
+
                 button.Click += btnBucketClick;
                 pnlBuckets.Controls.Add(button);
             }
@@ -55,13 +65,15 @@ namespace TomatoTimer.Forms
         private void btnBucketClick(object sender, EventArgs e)
         {
             var callingbutton = (Button)sender;
+            var targetBucket = (Bucket)callingbutton.Tag;
             currentFormState = formState.editingBucket;
-            LoadBucketForEdit(callingbutton.Text);
+            LoadBucketForEdit(targetBucket);
+            LoadFormState();
         }
 
-        private void LoadBucketForEdit(string bucketname)
+        private void LoadBucketForEdit(Bucket bucket)
         {
-            var bucket = _bucketService.Get(bucketname);
+            currentEditedBucketId = bucket.Id;
             txtBucketName.Text = bucket.Name;
         }
 
@@ -78,11 +90,14 @@ namespace TomatoTimer.Forms
 
         private void LoadFormState()
         {
+            lblFormState.Text = currentFormState.ToString();
+
             switch (currentFormState)
             {
                 case formState.clean:
                     cmdSave.Enabled = false;
                     cmdDelete.Enabled = false;
+                    currentEditedBucketId = Guid.Empty;
                     break;
 
                 case formState.editingBucket:
@@ -91,12 +106,41 @@ namespace TomatoTimer.Forms
                     break;
 
                 case formState.newBucket:
+                    cmdSave.Enabled = true;
+                    cmdDelete.Enabled = false;
+                    txtBucketName.Clear();
+                    txtBucketName.Focus();
+                    currentEditedBucketId = Guid.Empty;
                     break;
             }
         }
 
         private void cmdSave_Click(object sender, EventArgs e)
         {
+            if (currentFormState == formState.newBucket)
+            {
+                // Create New
+                var newBucket = new Bucket()
+                {
+                    Name = txtBucketName.Text
+                };
+                newBucket = _bucketService.Create(newBucket);
+                currentEditedBucketId = newBucket.Id;
+                currentFormState = formState.editingBucket;
+                LoadFormState();
+            }
+            else
+            {
+                // Save Existing
+                var savedBucket = new Bucket
+                {
+                    Id = currentEditedBucketId,
+                    Name = txtBucketName.Text
+                };
+                savedBucket = _bucketService.Save(savedBucket);
+            }
+
+            LoadBuckets();
         }
     }
 }

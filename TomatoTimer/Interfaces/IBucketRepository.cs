@@ -10,5 +10,7 @@ namespace TomatoTimer.Interfaces
         void Add(Bucket bucket);
 
         void Delete(Bucket bucket);
+
+        Bucket Save(Bucket bucket);
     }
 }

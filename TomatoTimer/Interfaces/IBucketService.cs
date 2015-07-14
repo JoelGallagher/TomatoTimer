@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TomatoTimer.Entities;
 
@@ -7,6 +8,12 @@ namespace TomatoTimer.Interfaces
     {
         IEnumerable<Bucket> GetAll();
 
-        Bucket Get(string bucketName);
+        Bucket GetByName(string bucketName);
+
+        Bucket Get(Guid Id);
+
+        Bucket Create(Bucket newBucket);
+
+        Bucket Save(Bucket bucket);
     }
 }
