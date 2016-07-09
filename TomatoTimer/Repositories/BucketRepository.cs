@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using TomatoTimer.Entities;
 using TomatoTimer.Interfaces;
 
@@ -31,6 +32,23 @@ namespace TomatoTimer.Repositories
         public void Delete(Bucket bucket)
         {
             _buckets.Remove(bucket);
+        }
+
+        public Bucket Save(Bucket bucket)
+        {
+            // upsert
+            var fetchedBucket = _buckets.FirstOrDefault(b => b.Id == bucket.Id);
+
+            if (fetchedBucket != null)
+            {
+                fetchedBucket.Name = bucket.Name;
+                return fetchedBucket;
+            }
+            else
+            {
+                _buckets.Add(bucket);
+                return bucket;
+            }
         }
     }
 }
